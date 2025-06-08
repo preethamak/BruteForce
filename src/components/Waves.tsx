@@ -22,7 +22,7 @@ class Noise {
     if (seed > 0 && seed < 1) seed *= 65536; seed = Math.floor(seed);
     if (seed < 256) seed |= seed << 8;
     for (let i = 0; i < 256; i++) {
-      let v = (i & 1) ? (this.p[i] ^ (seed & 255)) : (this.p[i] ^ ((seed >> 8) & 255));
+      const v = (i & 1) ? (this.p[i] ^ (seed & 255)) : (this.p[i] ^ ((seed >> 8) & 255));
       this.perm[i] = this.perm[i + 256] = v;
       this.gradP[i] = this.gradP[i + 256] = this.grad3[v % 12];
     }
@@ -59,21 +59,36 @@ const Waves = ({
   maxCursorMove = 100,
   style = {},
   className = ""
-}: any) => {
+} : {
+  lineColor?: string;
+  backgroundColor?: string;
+  waveSpeedX?: number;
+  waveSpeedY?: number;
+  waveAmpX?: number;
+  waveAmpY?: number;
+  xGap?: number;
+  yGap?: number;
+  friction?: number;
+  tension?: number;
+  maxCursorMove?: number;
+  style?: React.CSSProperties;
+  className?: string;
+}) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
-  const boundingRef = useRef({ width: 0, height: 0, left: 0, top: 0 });
-  const noiseRef = useRef<any>(new Noise(Math.random()));
-  const linesRef = useRef<any[]>([]);
-  const mouseRef = useRef({
+  const boundingRef = useRef<{ width: number; height: number; left: number; top: number }>({ width: 0, height: 0, left: 0, top: 0 });
+  const noiseRef = useRef<Noise>(new Noise(Math.random()));
+  type Point = { x: number; y: number; wave: { x: number; y: number }; cursor: { x: number; y: number; vx: number; vy: number } };
+  const linesRef = useRef<Point[][]>([]);
+  const mouseRef = useRef<{ x: number; y: number; lx: number; ly: number; sx: number; sy: number; v: number; vs: number; a: number; set: boolean }>({
     x: -10, y: 0, lx: 0, ly: 0, sx: 0, sy: 0, v: 0, vs: 0, a: 0, set: false
   });
   const configRef = useRef({
     lineColor, waveSpeedX, waveSpeedY, waveAmpX, waveAmpY,
     friction, tension, maxCursorMove, xGap, yGap
   });
-  const frameIdRef = useRef<any>(null);
+  const frameIdRef = useRef<number | null>(null);
   useEffect(() => {
     configRef.current = { lineColor, waveSpeedX, waveSpeedY, waveAmpX, waveAmpY, friction, tension, maxCursorMove, xGap, yGap };
   }, [lineColor, waveSpeedX, waveSpeedY, waveAmpX, waveAmpY, friction, tension, maxCursorMove, xGap, yGap]);
@@ -111,7 +126,7 @@ const Waves = ({
     function movePoints(time: number) {
       const lines = linesRef.current, mouse = mouseRef.current, noise = noiseRef.current;
       const { waveSpeedX, waveSpeedY, waveAmpX, waveAmpY, friction, tension, maxCursorMove } = configRef.current;
-      lines.forEach((pts: any[]) => {
+      lines.forEach((pts) => {
         pts.forEach((p) => {
           const move = noise.perlin2(
             (p.x + time * waveSpeedX) * 0.002,
@@ -138,7 +153,7 @@ const Waves = ({
         });
       });
     }
-    function moved(point: any, withCursor = true) {
+    function moved(point: Point, withCursor = true) {
       const x = point.x + point.wave.x + (withCursor ? point.cursor.x : 0);
       const y = point.y + point.wave.y + (withCursor ? point.cursor.y : 0);
       return { x: Math.round(x * 10) / 10, y: Math.round(y * 10) / 10 };
@@ -152,7 +167,7 @@ const Waves = ({
       linesRef.current.forEach((points) => {
         let p1 = moved(points[0], false);
         ctx.moveTo(p1.x, p1.y);
-        points.forEach((p: any, idx: number) => {
+        points.forEach((p, idx: number) => {
           const isLast = idx === points.length - 1;
           p1 = moved(p, !isLast);
           const p2 = moved(points[idx + 1] || points[points.length - 1], !isLast);
