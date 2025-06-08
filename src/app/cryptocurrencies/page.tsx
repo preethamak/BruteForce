@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useTheme } from "@/context/ThemeContext";
+import { GradientText, PressureText, GlitchText } from "@/components/AnimatedText";
 
 interface Crypto {
   id: string;
@@ -39,8 +40,10 @@ export default function Cryptocurrencies() {
     <main className={`min-h-screen pb-10 pt-24 px-4 bg-gradient-to-br ${theme === "dark" ? "from-gray-900 to-gray-800" : "from-blue-50 to-indigo-100"}`}>
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-8">
-          <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">Top Cryptocurrencies</h1>
-          <Link href="/" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline text-lg">← Back to Home</Link>
+          <h1 className="text-3xl font-extrabold">
+            <GradientText>Top Cryptocurrencies</GradientText>
+          </h1>
+          <Link href="/" className="font-semibold hover:underline text-lg bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">← Back to Home</Link>
         </div>
         <div className="overflow-x-auto rounded-xl shadow-lg bg-white dark:bg-gray-900">
           <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
@@ -71,14 +74,24 @@ export default function Cryptocurrencies() {
                     className="hover:bg-blue-50 dark:hover:bg-gray-800 transition-colors"
                   >
                     <td className="px-4 py-3"><img src={coin.image} alt={coin.name} className="w-8 h-8 rounded-full" /></td>
-                    <td className="px-4 py-3 font-semibold text-gray-900 dark:text-white">{coin.name}</td>
-                    <td className="px-4 py-3 uppercase text-gray-500 dark:text-gray-400">{coin.symbol}</td>
-                    <td className="px-4 py-3 text-right font-mono text-blue-700 dark:text-blue-300">${coin.current_price.toLocaleString()}</td>
-                    <td className={`px-4 py-3 text-right font-semibold ${coin.price_change_percentage_24h >= 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`}>
-                      {coin.price_change_percentage_24h?.toFixed(2)}%
+                    <td className="px-4 py-3 font-semibold">
+                      <GlitchText>{coin.name}</GlitchText>
                     </td>
-                    <td className="px-4 py-3 text-right text-gray-700 dark:text-gray-300">${coin.market_cap.toLocaleString()}</td>
-                    <td className="px-4 py-3 text-right text-gray-700 dark:text-gray-300">${coin.total_volume.toLocaleString()}</td>
+                    <td className="px-4 py-3 uppercase text-gray-500 dark:text-gray-400">
+                      <PressureText>{coin.symbol}</PressureText>
+                    </td>
+                    <td className="px-4 py-3 text-right font-mono">
+                      <GradientText>${coin.current_price.toLocaleString()}</GradientText>
+                    </td>
+                    <td className={`px-4 py-3 text-right font-semibold ${coin.price_change_percentage_24h >= 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`}>
+                      <PressureText>{coin.price_change_percentage_24h?.toFixed(2)}%</PressureText>
+                    </td>
+                    <td className="px-4 py-3 text-right">
+                      <PressureText>${coin.market_cap.toLocaleString()}</PressureText>
+                    </td>
+                    <td className="px-4 py-3 text-right">
+                      <PressureText>${coin.total_volume.toLocaleString()}</PressureText>
+                    </td>
                     <td className="px-4 py-3 text-center">
                       <Sparkline data={coin.sparkline_in_7d.price} color={coin.price_change_percentage_24h >= 0 ? '#16a34a' : '#dc2626'} />
                     </td>

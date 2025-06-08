@@ -26,31 +26,29 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
-      isScrolled ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-md' : 'bg-transparent'
-    }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+    <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-200 bg-white/40 dark:bg-gray-900/40 backdrop-blur-xl shadow-lg border-b border-blue-100/30 dark:border-gray-800/40">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
+        <div className="flex justify-between items-center h-20">
           {/* Logo/Brand */}
-          <Link href="/" className="flex items-center gap-2 text-2xl font-extrabold text-blue-700 dark:text-blue-400 tracking-tight">
-            <svg className="w-7 h-7" fill="none" viewBox="0 0 32 32"><circle cx="16" cy="16" r="15" stroke="#2563eb" strokeWidth="3" fill={theme === 'dark' ? '#0f172a' : '#fff'} /><path d="M10 20l6-8 6 8" stroke="#2563eb" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            BruteForce
+          <Link href="/" className="flex items-center gap-3 text-2xl font-extrabold tracking-tight select-none">
+            <svg className="w-8 h-8" fill="none" viewBox="0 0 32 32"><circle cx="16" cy="16" r="15" stroke="#2563eb" strokeWidth="3" fill={theme === 'dark' ? '#0f172a' : '#fff'} /><path d="M10 20l6-8 6 8" stroke="#2563eb" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <span className="true-focus-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent drop-shadow-lg animate-pulse text-3xl">BruteForce</span>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-2 lg:gap-6">
+          <div className="hidden md:flex items-center gap-1 lg:gap-4 xl:gap-8">
             {navLinks.map(link => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-lg font-medium px-3 py-2 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 transition-colors"
+                className="text-lg font-semibold px-4 py-2 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-white/20 dark:hover:bg-gray-800/40 hover:text-blue-700 dark:hover:text-blue-300 transition-all duration-200 relative overflow-visible"
               >
-                {link.label}
+                <span className="relative z-10 tracking-wide uppercase">{link.label}</span>
               </Link>
             ))}
             <button
               onClick={toggleTheme}
-              className="ml-2 p-2 rounded-full border border-blue-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-blue-700 dark:text-blue-300 shadow hover:scale-110 transition-transform"
+              className="ml-4 p-2 rounded-full border border-blue-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-blue-700 dark:text-blue-300 shadow hover:scale-110 transition-transform"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? (
