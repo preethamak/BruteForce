@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useTheme } from "@/context/ThemeContext";
 import { GradientText, PressureText, GlitchText } from "@/components/AnimatedText";
+import Particles from "@/components/Particles";
 
 interface Crypto {
   id: string;
@@ -37,15 +38,27 @@ export default function Cryptocurrencies() {
   }, []);
 
   return (
-    <main className={`min-h-screen pb-10 pt-24 px-4 bg-gradient-to-br ${theme === "dark" ? "from-gray-900 to-gray-800" : "from-blue-50 to-indigo-100"}`}>
-      <div className="max-w-7xl mx-auto">
+    <main className={`min-h-screen pb-10 pt-24 px-4 relative overflow-hidden`}>
+      <div style={{ width: '100%', height: '100%', position: 'fixed', left: 0, top: 0, zIndex: 0 }}>
+        <Particles
+          particleColors={["#ffffff", "#ffffff"]}
+          particleCount={200}
+          particleSpread={10}
+          speed={0.1}
+          particleBaseSize={100}
+          moveParticlesOnHover={true}
+          alphaParticles={false}
+          disableRotation={false}
+        />
+      </div>
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-3xl font-extrabold">
             <GradientText>Top Cryptocurrencies</GradientText>
           </h1>
           <Link href="/" className="font-semibold hover:underline text-lg bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">← Back to Home</Link>
         </div>
-        <div className="overflow-x-auto rounded-xl shadow-lg bg-white dark:bg-gray-900">
+        <div className="overflow-x-auto rounded-xl shadow-lg bg-transparent dark:bg-transparent">
           <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
             <thead className="bg-blue-600 dark:bg-gray-800">
               <tr>
@@ -59,7 +72,7 @@ export default function Cryptocurrencies() {
                 <th className="px-4 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">7D Trend</th>
               </tr>
             </thead>
-            <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-100 dark:divide-gray-800">
+            <tbody className="bg-white/80 dark:bg-gray-900/80 divide-y divide-gray-100 dark:divide-gray-800">
               {loading ? (
                 <tr>
                   <td colSpan={8} className="text-center py-8 text-lg text-gray-500 dark:text-gray-400">Loading...</td>

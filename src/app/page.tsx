@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import Navbar from '@/components/Navbar';
-import { GradientText, PressureText, TrueFocusText, GlitchText, ScrollDown } from '@/components/AnimatedText';
+import { motion } from "framer-motion";
+import Link from "next/link";
+import Navbar from "@/components/Navbar";
+import { GradientText, PressureText, TrueFocusText, GlitchText, ScrollDown } from "@/components/AnimatedText";
 
 const features = [
   {
-    title: 'Real-Time Data',
-    description: 'Get instant updates on cryptocurrency prices and market movements.',
+    title: "Real-Time Data",
+    description: "Get instant updates on cryptocurrency prices and market movements.",
     icon: (
       <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -16,8 +16,8 @@ const features = [
     ),
   },
   {
-    title: 'Advanced Analytics',
-    description: 'Make informed decisions with our comprehensive market analysis tools.',
+    title: "Advanced Analytics",
+    description: "Make informed decisions with our comprehensive market analysis tools.",
     icon: (
       <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
@@ -25,8 +25,8 @@ const features = [
     ),
   },
   {
-    title: 'Portfolio Tracking',
-    description: 'Monitor your investments and track your portfolio performance over time.',
+    title: "Portfolio Tracking",
+    description: "Monitor your investments and track your portfolio performance over time.",
     icon: (
       <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -57,16 +57,16 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="text-center md:text-left flex-1"
           >
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-gray-900 mb-8 drop-shadow-lg">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-black mb-8 drop-shadow-lg">
               <TrueFocusText>
                 Track Your <GradientText>Crypto Portfolio</GradientText>
                 <span className="sr-only"> </span>
                 <span className="text-blue-600"> in <GradientText>Real-Time</GradientText></span>
               </TrueFocusText>
             </h1>
-            <p className="text-2xl text-blue-900 mb-12 max-w-3xl mx-auto md:mx-0">
-              <GlitchText>Get real-time cryptocurrency prices, market trends, and analytics.</GlitchText><br/>
-              <PressureText>Make informed decisions with our comprehensive crypto dashboard.</PressureText>
+            <p className="text-2xl text-black mb-12 max-w-3xl mx-auto md:mx-0">
+              Get real-time cryptocurrency prices, market trends, and analytics.<br/>
+              Make informed decisions with our comprehensive crypto dashboard.
             </p>
             <div className="flex justify-center md:justify-start gap-4">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -74,7 +74,7 @@ export default function Home() {
                   href="/dashboard"
                   className="bg-blue-600 shadow-lg text-white px-10 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-colors text-lg"
                 >
-                  <PressureText>Get Started</PressureText>
+                  Get Started
                 </Link>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -82,7 +82,7 @@ export default function Home() {
                   href="/about"
                   className="bg-white shadow-lg text-gray-800 px-10 py-4 rounded-xl font-semibold hover:bg-gray-50 transition-colors border border-gray-200 text-lg"
                 >
-                  <PressureText>Learn More</PressureText>
+                  Learn More
                 </Link>
               </motion.div>
             </div>
@@ -104,11 +104,11 @@ export default function Home() {
         <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-gradient-to-tr from-pink-100 via-blue-100 to-purple-100 rounded-full opacity-30 blur-2xl z-0"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900">
+            <h2 className="text-3xl font-bold text-black">
               <GradientText>Why Choose Us</GradientText>
             </h2>
-            <p className="mt-4 text-lg text-gray-600">
-              <PressureText>Everything you need to track your crypto investments</PressureText>
+            <p className="mt-4 text-lg text-black">
+              Everything you need to track your crypto investments
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -124,12 +124,10 @@ export default function Home() {
                 <div className="w-16 h-16 bg-gradient-to-tr from-blue-200 via-purple-200 to-pink-200 rounded-full flex items-center justify-center mb-4 shadow">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                <h3 className="text-xl font-semibold text-black mb-2">
                   <GradientText>{feature.title}</GradientText>
                 </h3>
-                <p className="text-gray-600 mb-2">
-                  <PressureText>{feature.description}</PressureText>
-                </p>
+                <p className="text-black mb-2">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -145,15 +143,15 @@ export default function Home() {
         <div className="max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-center justify-center gap-12">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="flex-1 text-center">
             <h3 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-pulse">120K+</h3>
-            <p className="mt-2 text-lg text-gray-700">Active Users</p>
+            <p className="mt-2 text-lg text-black">Active Users</p>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.2 }} className="flex-1 text-center">
             <h3 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-blue-500 to-purple-500 animate-pulse">$2.5B+</h3>
-            <p className="mt-2 text-lg text-gray-700">Assets Tracked</p>
+            <p className="mt-2 text-lg text-black">Assets Tracked</p>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.4 }} className="flex-1 text-center">
             <h3 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 animate-pulse">8M+</h3>
-            <p className="mt-2 text-lg text-gray-700">Transactions</p>
+            <p className="mt-2 text-lg text-black">Transactions</p>
           </motion.div>
         </div>
       </motion.section>
@@ -166,25 +164,25 @@ export default function Home() {
         transition={{ duration: 0.8 }}>
         <div className="max-w-5xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">
+            <h2 className="text-3xl font-bold text-black mb-2">
               <GradientText>Trusted by Investors Worldwide</GradientText>
             </h2>
-            <p className="text-lg text-gray-600">See what our users are saying</p>
+            <p className="text-lg text-black">See what our users are saying</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="pixel-transition glare-hover bg-gradient-to-br from-blue-50 to-indigo-100 p-8 rounded-2xl shadow flex flex-col items-center text-center">
               <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User 1" className="w-16 h-16 rounded-full mb-4 border-4 border-blue-200" />
-              <p className="text-gray-700 mb-2">“The best crypto dashboard I’ve ever used. Real-time data and beautiful UI!”</p>
+              <p className="text-black mb-2">“The best crypto dashboard I’ve ever used. Real-time data and beautiful UI!”</p>
               <span className="font-semibold text-blue-700">Alex P.</span>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="pixel-transition glare-hover bg-gradient-to-br from-purple-50 to-pink-100 p-8 rounded-2xl shadow flex flex-col items-center text-center">
               <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User 2" className="w-16 h-16 rounded-full mb-4 border-4 border-purple-200" />
-              <p className="text-gray-700 mb-2">“I love the analytics and the portfolio tracking. Highly recommended!”</p>
+              <p className="text-black mb-2">“I love the analytics and the portfolio tracking. Highly recommended!”</p>
               <span className="font-semibold text-purple-700">Priya S.</span>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.4 }} className="pixel-transition glare-hover bg-gradient-to-br from-pink-50 to-blue-100 p-8 rounded-2xl shadow flex flex-col items-center text-center">
               <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="User 3" className="w-16 h-16 rounded-full mb-4 border-4 border-pink-200" />
-              <p className="text-gray-700 mb-2">“Super easy to use and the design is stunning. My go-to crypto app!”</p>
+              <p className="text-black mb-2">“Super easy to use and the design is stunning. My go-to crypto app!”</p>
               <span className="font-semibold text-pink-700">Michael T.</span>
             </motion.div>
           </div>
@@ -207,14 +205,14 @@ export default function Home() {
               <TrueFocusText>Ready to Start Tracking Your <GradientText>Crypto</GradientText>?</TrueFocusText>
             </h2>
             <p className="text-xl text-blue-100 mb-8">
-              <GlitchText>Join thousands of investors who trust our platform</GlitchText>
+              Join thousands of investors who trust our platform
             </p>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href="/signup"
                 className="bg-white text-blue-600 px-8 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors"
               >
-                <PressureText>Create Free Account</PressureText>
+                Create Free Account
               </Link>
             </motion.div>
           </motion.div>

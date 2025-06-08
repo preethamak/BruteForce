@@ -1,6 +1,7 @@
 import './globals.css';
 import { ThemeProvider } from '@/context/ThemeContext';
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 export const metadata = {
   title: 'BruteForce Crypto Dashboard',
@@ -14,6 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider>
           <Navbar />
           <div className="pt-16">{children}</div>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
