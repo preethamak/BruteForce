@@ -68,6 +68,21 @@ void main() {
 }
 `;
 
+interface ParticlesProps {
+  particleCount?: number;
+  particleSpread?: number;
+  speed?: number;
+  particleColors?: string[];
+  moveParticlesOnHover?: boolean;
+  particleHoverFactor?: number;
+  alphaParticles?: boolean;
+  particleBaseSize?: number;
+  sizeRandomness?: number;
+  cameraDistance?: number;
+  disableRotation?: boolean;
+  className?: string;
+}
+
 const Particles = ({
   particleCount = 200,
   particleSpread = 10,
@@ -81,7 +96,7 @@ const Particles = ({
   cameraDistance = 20,
   disableRotation = false,
   className = '',
-}: any) => {
+}: ParticlesProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const mouseRef = useRef({ x: 0, y: 0 });
 

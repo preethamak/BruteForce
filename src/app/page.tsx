@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
-import { GradientText, PressureText, TrueFocusText, GlitchText, ScrollDown } from "@/components/AnimatedText";
+import { GradientText, TrueFocusText, ScrollDown } from "@/components/AnimatedText";
 
 const features = [
   {

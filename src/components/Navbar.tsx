@@ -10,8 +10,8 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [folderOpen, setFolderOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
-  const folderRef = useRef(null);
-  const settingsRef = useRef(null);
+  const folderRef = useRef<HTMLDivElement | null>(null);
+  const settingsRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,11 +23,11 @@ export default function Navbar() {
 
   // Close dropdowns on outside click
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (folderRef.current && !folderRef.current.contains(event.target)) {
+    function handleClickOutside(event: MouseEvent) {
+      if (folderRef.current && !folderRef.current.contains(event.target as Node)) {
         setFolderOpen(false);
       }
-      if (settingsRef.current && !settingsRef.current.contains(event.target)) {
+      if (settingsRef.current && !settingsRef.current.contains(event.target as Node)) {
         setSettingsOpen(false);
       }
     }

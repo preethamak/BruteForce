@@ -220,7 +220,9 @@ const Waves = ({
       window.removeEventListener("resize", onResize);
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("touchmove", onTouchMove);
-      cancelAnimationFrame(frameIdRef.current);
+      if (frameIdRef.current !== null) {
+        cancelAnimationFrame(frameIdRef.current);
+      }
     };
   }, []);
   return (

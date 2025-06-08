@@ -3,12 +3,19 @@ import { useEffect, useRef } from "react";
 import { Renderer, Program, Mesh, Triangle, Vec3 } from "ogl";
 import "./Orb.css";
 
+interface OrbProps {
+  hue?: number;
+  hoverIntensity?: number;
+  rotateOnHover?: boolean;
+  forceHoverState?: boolean;
+}
+
 export default function Orb({
   hue = 0,
   hoverIntensity = 0.2,
   rotateOnHover = true,
   forceHoverState = false,
-}: any) {
+}: OrbProps) {
   const ctnDom = useRef<HTMLDivElement>(null);
   const vert = `
     precision highp float;
@@ -214,7 +221,7 @@ export default function Orb({
     };
     container.addEventListener("mousemove", handleMouseMove);
     container.addEventListener("mouseleave", handleMouseLeave);
-    let rafId: any;
+    let rafId: number | null;
     const update = (t: number) => {
       rafId = requestAnimationFrame(update);
       const dt = (t - lastTime) * 0.001;
@@ -232,7 +239,9 @@ export default function Orb({
     };
     rafId = requestAnimationFrame(update);
     return () => {
-      cancelAnimationFrame(rafId);
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
       window.removeEventListener("resize", resize);
       container.removeEventListener("mousemove", handleMouseMove);
       container.removeEventListener("mouseleave", handleMouseLeave);

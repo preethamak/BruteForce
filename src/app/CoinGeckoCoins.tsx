@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 interface Coin {
   id: string;
@@ -29,7 +30,7 @@ export default function CoinGeckoCoins() {
         setCoins(data);
         setLoading(false);
       })
-      .catch((err) => {
+      .catch(() => {
         setError("Failed to fetch coin data");
         setLoading(false);
       });
@@ -75,7 +76,7 @@ export default function CoinGeckoCoins() {
                 <tr key={coin.id} className="hover:bg-blue-50 transition">
                   <td className="px-4 py-2 font-bold text-blue-600">{coin.market_cap_rank}</td>
                   <td className="px-4 py-2 flex items-center gap-2">
-                    <img src={coin.image} alt={coin.name} className="w-6 h-6 rounded-full mr-2" />
+                    <Image src={coin.image} alt={coin.name} width={24} height={24} className="w-6 h-6 rounded-full mr-2" />
                     <span className="font-semibold text-black">{coin.name}</span>
                     <span className="uppercase text-xs text-gray-500 ml-1">{coin.symbol}</span>
                   </td>
