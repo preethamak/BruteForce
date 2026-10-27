@@ -71,7 +71,7 @@ void main() {
   fragColor = vec4(auroraColor * auroraAlpha, auroraAlpha);
 }`;
 
-export default function Aurora(props: any) {
+export default function Aurora(props: { colorStops?: string[]; amplitude?: number; blend?: number; speed?: number; time?: number }) {
   const {
     colorStops = ["#5227FF", "#7cff67", "#5227FF"],
     amplitude = 1.0,
@@ -79,7 +79,7 @@ export default function Aurora(props: any) {
     speed = 1.0,
   } = props;
   const propsRef = useRef(props);
-  propsRef.current = props;
+  useEffect(() => { propsRef.current = props; }, [props]);
   const ctnDom = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const ctn = ctnDom.current;
@@ -94,14 +94,14 @@ export default function Aurora(props: any) {
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
     gl.canvas.style.backgroundColor = 'transparent';
-    let program: Program;
+    const programRef: { current?: Program } = {};
     function resize() {
       if (!ctn) return;
       const width = ctn.offsetWidth;
       const height = ctn.offsetHeight;
       renderer.setSize(width, height);
-      if (program) {
-        program.uniforms.uResolution.value = [width, height];
+      if (programRef.current) {
+        programRef.current.uniforms.uResolution.value = [width, height];
       }
     }
     window.addEventListener("resize", resize);
@@ -113,7 +113,7 @@ export default function Aurora(props: any) {
       const c = new Color(hex);
       return [c.r, c.g, c.b];
     });
-    program = new Program(gl, {
+    const program = new Program(gl, {
       vertex: VERT,
       fragment: FRAG,
       uniforms: {
@@ -124,6 +124,7 @@ export default function Aurora(props: any) {
         uBlend: { value: blend }
       }
     });
+    programRef.current = program;
     const mesh = new Mesh(gl, { geometry, program });
     ctn.appendChild(gl.canvas);
     let animateId = 0;

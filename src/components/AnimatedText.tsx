@@ -1,4 +1,6 @@
-import React, { useRef, useState } from 'react';
+"use client";
+
+import React from 'react';
 
 // Gradient Text
 export function GradientText({ children, className = '' }: { children: React.ReactNode; className?: string }) {
