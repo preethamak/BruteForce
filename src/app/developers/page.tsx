@@ -25,7 +25,7 @@ export default function Developers() {
             <GradientText>Developers</GradientText>
           </h1>
           <p className="text-xl text-black mb-10 max-w-2xl mx-auto">
-            Build, integrate, and innovate with BruteForce's powerful APIs and developer tools. Empower your apps and workflows with real-time crypto data and analytics.
+            Build, integrate, and innovate with BruteForce&apos;s powerful APIs and developer tools. Empower your apps and workflows with real-time crypto data and analytics.
           </p>
         </div>
       </section>

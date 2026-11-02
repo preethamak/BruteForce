@@ -7,10 +7,10 @@ import { useForm } from 'react-hook-form';
 
 export default function SignupPage() {
   const [isLoading, setIsLoading] = useState(false);
-  const { register, handleSubmit, formState: { errors }, watch } = useForm();
+  const { register, handleSubmit, formState: { errors }, watch } = useForm<Record<string, string>>();
   const password = watch('password');
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: Record<string, string>) => {
     setIsLoading(true);
     // TODO: Implement signup logic
     console.log(data);

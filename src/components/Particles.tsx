@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useRef } from "react";
-// @ts-ignore
 import { Renderer, Camera, Geometry, Program, Mesh } from "ogl";
 import './Particles.css';
 

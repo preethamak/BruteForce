@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import {
   Chart as ChartJS,
@@ -41,39 +41,33 @@ interface CryptoData {
 
 export default function Dashboard() {
   const [cryptoData, setCryptoData] = useState<CryptoData[]>([]);
-  const [filteredData, setFilteredData] = useState<CryptoData[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedCrypto, setSelectedCrypto] = useState<CryptoData | null>(null);
 
   useEffect(() => {
-    fetchCryptoData();
-    const interval = setInterval(fetchCryptoData, 60000); // Update every minute
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    const filtered = cryptoData.filter(crypto => 
-      crypto.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      crypto.symbol.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredData(filtered);
-  }, [searchTerm, cryptoData]);
-
-  const fetchCryptoData = async () => {
+    async function fetchCryptoData() {
     try {
       const response = await fetch('/api/crypto');
       if (!response.ok) throw new Error('Failed to fetch data');
       const data = await response.json();
       setCryptoData(data);
-      setFilteredData(data);
       setLoading(false);
-    } catch (err) {
+    } catch {
       setError('Failed to load crypto data');
       setLoading(false);
     }
-  };
+  }
+    void fetchCryptoData();
+    const interval = setInterval(fetchCryptoData, 60000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const filteredData = useMemo(() => cryptoData.filter(crypto =>
+    crypto.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    crypto.symbol.toLowerCase().includes(searchTerm.toLowerCase())
+  ), [searchTerm, cryptoData]);
 
   const formatNumber = (num: number | null) => {
     if (num === null) return '-';

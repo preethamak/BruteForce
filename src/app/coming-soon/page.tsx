@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 
 export default function ComingSoon() {
@@ -26,7 +27,7 @@ export default function ComingSoon() {
         <p className="text-xl text-gray-800 mb-8 max-w-xl">
           This feature is under development and will be available soon. Stay tuned for powerful new tools and resources from the BruteForce team!
         </p>
-        <a href="/" className="bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">Back to Home</a>
+        <Link href="/" className="bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">Back to Home</Link>
       </div>
     </main>
   );
